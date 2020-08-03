@@ -125,3 +125,6 @@ body {
 	text-shadow: rgba(0, 0, 0, 0.3) 0 1px 0;
 	backface-visibility: hidden;
 }
+.leaflet-opened .close-btn {
+	display: inline-block; /*페이지가 다 열리면 close가 보이게*/
+}
