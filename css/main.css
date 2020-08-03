@@ -2,6 +2,9 @@ html {
     font-size : 14px;
 }
 body {
+    font-family: 'Playfair Display', serif;
+    background: url(../images/tablewood.jpg);
+    background-size: auto 130px;
     perspective: 1500px; /*전체를 3D공간(눈에서부터의 거리 = 작은값일수록 극적)으로 만든다*/
 }
 .leaflet {
@@ -24,11 +27,20 @@ body {
     transition: 1s;
     transform-style: preserve-3d; /*body에 설정한 perspective가 전달되도록*/
 }
-.page.page-flipped {
+
+.page:nth-child(1) {
+    z-index : 2; /*안 해주면 div순서로 맨 밑div가 맨 위에 쌓인다(포지션 앱솔루트)*/
+    transform-origin: left; /*회전기준의 디폴트는 가운데이기에 왼쪽으로*/
+}
+.page:nth-child(3) {
+    z-index : 1; /*숫자가 클수록 위에 쌓인다*/
+    transform-origin: right;
+}
+.page:nth-child(1).page-flipped {
     transform : rotateY(-150deg);
 }
-.page:nth-child(1) {
-    transform-origin: left; /*회전기준의 디폴트는 가운데이기에 왼쪽으로*/
+.page:nth-child(3).page-flipped {
+    transform : rotateY(150deg);
 }
 .page-face {
     position: absolute;
@@ -41,4 +53,25 @@ body {
 }
 .page-face:nth-child(2) {
     transform : rotateY(180deg); /*뒷면을 180도 돌려 겹치게함*/
+}
+
+.cover-page { 
+    display : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.cover-page::before {
+    content : '';
+    display : block;
+    position : absolute;
+    left : 10px;
+    right : 10px;
+    top : 10px;
+    bottom : 10px;
+    border : 1px solid tan;
+}
+.menu-header-title {
+	font-family: 'Courgette', cursive;
 }
