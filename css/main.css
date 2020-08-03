@@ -24,7 +24,7 @@ body {
     transition: 1s;
     transform-style: preserve-3d; /*body에 설정한 perspective가 전달되도록*/
 }
-.page:hover {
+.page.page-flipped {
     transform : rotateY(-150deg);
 }
 .page:nth-child(1) {
