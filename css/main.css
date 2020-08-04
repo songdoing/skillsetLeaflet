@@ -17,6 +17,7 @@ body {
     height : 30vw;
     margin : auto;
     transform-style: preserve-3d; /*body에 설정한 perspective가 전달되도록*/
+    transition: 1s;
 }
 .page {
     position: absolute;
@@ -81,7 +82,7 @@ body {
 	font-family: 'Courgette', cursive;
 }
 .skill-list {
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 }
 .skill-item {
 	display: flex;

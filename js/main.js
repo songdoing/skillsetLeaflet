@@ -29,6 +29,32 @@
         }, 500);
     }
 
+    function zoomIn(elem) {
+        console.log(elem.getBoundingClientRect());
+         /*DOMrect 객체정보, 크기위치 등등 */
+
+        const rect = elem.getBoundingClientRect();
+        console.log(rect.left, rect.top);
+        const dx = window.innerWidth/2 - (rect.x + rect.width/2);
+        const dy = window.innerHeight/2 - (rect.y + rect.height/2);
+        let angle;
+
+        switch (elem.dataset.page *1) { /*문자를 숫자로 바꾸는 가장 간단한 *1 */
+            case 1 : 
+                angle = -30;
+                break;
+            case 2:
+                angle = 0;
+                break;
+            case 3:
+                angle = 30;
+                break;                
+        }
+
+        leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`;
+        /*너무 갑자기 움직이지 않도록 css의 leaflet에 transition 걸어두기 */
+    }
+
     leaflet.addEventListener('click', e => {
         console.log(e.target); /* 최하위의 page-face를 선택됨 
         그래서 parentNode를 올리면서 맞는 elem(page)가 나올때까지 while문*/
@@ -50,6 +76,11 @@
         if(closeBtnElem) {
             closeLeaflet();
             
+        }
+
+        let skillItemElem = getTarget(e.target, 'skill-item');
+        if (skillItemElem) {
+            zoomIn(skillItemElem);
         }
     });
 })(); 
