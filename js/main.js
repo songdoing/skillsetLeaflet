@@ -7,6 +7,7 @@
     const leaflet = document.querySelector('.leaflet');
     const pageElems = document.querySelectorAll('.page');
     let pageCount = 0;
+    let currentSkill;
 
     function getTarget(elem, className) {
         while ( !elem.classList.contains(className)) {
@@ -51,8 +52,20 @@
                 break;                
         }
 
+        document.body.classList.add('zoom-in'); /*줌인이 되었을때 class추가 */
         leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`;
         /*너무 갑자기 움직이지 않도록 css의 leaflet에 transition 걸어두기 */
+        currentSkill = elem;
+        currentSkill.classList.add('current-skill'); /*줌인된 skill-item에 class추가 */
+    }
+
+    function zoomOut() {
+        leaflet.style.transform = 'translate3d(0,0,0)';
+        if(currentSkill) {
+            document.body.classList.remove('zoom-in');
+            currentSkill.classList.remove('current-skill');
+            currentSkill = null;
+        }
     }
 
     leaflet.addEventListener('click', e => {
@@ -75,12 +88,17 @@
         let closeBtnElem = getTarget(e.target, 'close-btn');
         if(closeBtnElem) {
             closeLeaflet();
-            
+            zoomOut();
         }
 
         let skillItemElem = getTarget(e.target, 'skill-item');
         if (skillItemElem) {
             zoomIn(skillItemElem);
+        }
+
+        let backBtn = getTarget(e.target, 'back-btn');
+        if (backBtn) {
+            zoomOut();
         }
     });
 })(); 

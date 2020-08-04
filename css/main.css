@@ -91,12 +91,21 @@ body {
 	padding: 2em;
 	transition: 0.5s;
 }
+.zoom-in .skill-item {
+    opacity: 0;
+}
+.zoom-in .current-skill {
+    opacity: 1;
+}
 
 .back-btn {
 	display: none;
 	position: absolute;
 	right: 10px;
 	top: 10px;
+}
+.current-skill .back-btn {
+    display: inline-block;
 }
 
 .skill-item-photo {
