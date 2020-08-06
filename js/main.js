@@ -4,10 +4,18 @@
 })(); 
 익명함수를 즉시 호출, 그 안에 있는 변수는 전역변수가 아니구 보호됨 */
 (() => {
+    const pointer = document.querySelector('.pointer');
     const leaflet = document.querySelector('.leaflet');
     const pageElems = document.querySelectorAll('.page');
     let pageCount = 0;
     let currentSkill;
+
+    //현재 포인터의 위치..객체형태로 담아두기
+    const pointerPos = {x:0, y:0};
+    const targetPos = {x:0, y:0};
+    //마우스와 이사벨라와의 거리
+    let distX;
+    let distY;
 
     function getTarget(elem, className) {
         while ( !elem.classList.contains(className)) {
@@ -68,6 +76,16 @@
         }
     }
 
+    function render() {
+        distX = targetPos.x - pointerPos.x;
+        distY = targetPos.y - pointerPos.y;
+        pointerPos.x = pointerPos.x + distX*0.1;
+        pointerPos.y = pointerPos.y + distY*0.1;
+        pointer.style.transform = `translate(${pointerPos.x-60}px, ${pointerPos.y+10}px)`
+        requestAnimationFrame(render);
+        //마우스와 이사벨라의 거리의 0.1를 곱한거리만큼 마우스쪽으로 가까워짐..반복적으로
+    }
+
     leaflet.addEventListener('click', e => {
         console.log(e.target); /* 최하위의 page-face를 선택됨 
         그래서 parentNode를 올리면서 맞는 elem(page)가 나올때까지 while문*/
@@ -100,5 +118,12 @@
         if (backBtn) {
             zoomOut();
         }
+    });
+
+    window.addEventListener('mousemove', e => {
+        targetPos.x = e.clientX;
+        targetPos.y = e.clientY;
+        //pointer.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        render();
     });
 })(); 
