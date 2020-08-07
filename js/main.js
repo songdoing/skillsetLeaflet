@@ -81,8 +81,8 @@
         distY = targetPos.y - pointerPos.y;
         pointerPos.x = pointerPos.x + distX*0.1;
         pointerPos.y = pointerPos.y + distY*0.1;
-        if (pointerPos.x > 1400) {
-            pointerPos.x = 1400;
+        if (pointerPos.x > 1300) {
+            pointerPos.x = 1300;
         }
         if (pointerPos.x < 60) {
             pointerPos.x = 60;
@@ -90,7 +90,7 @@
         if (pointerPos.y > 370) {
             pointerPos.y = 370;
         }
-        pointer.style.transform = `translate(${pointerPos.x-60}px, ${pointerPos.y+10}px)`
+        pointer.style.transform = `translate(${pointerPos.x+20}px, ${pointerPos.y+10}px)`
         requestAnimationFrame(render);
         //마우스와 이사벨라의 거리의 0.1를 곱한거리만큼 마우스쪽으로 가까워짐..반복적으로
     }

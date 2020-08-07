@@ -19,7 +19,6 @@ body {
 .pointer {
     position: absolute;
     z-index : 10;
-    
     display : none;
 }
 .pointer img {
@@ -43,6 +42,7 @@ body {
     cursor : pointer;
     animation : start-ani 1s forwards;
 }
+
 .page {
     position: absolute;
     left: 0;
@@ -161,4 +161,47 @@ body {
 }
 .leaflet-opened .close-btn {
 	display: inline-block; /*페이지가 다 열리면 close가 보이게*/
+}
+
+@media ( max-width : 1360px) {
+    .leaflet {
+        height: 35vw;
+    }
+    
+    .skill-item {
+        padding : 2.5em;
+    }
+}
+@media ( max-width : 1240px) {
+    .leaflet {
+        height: 40vw;
+    }
+    .skill-list {
+        font-size: 0.7rem;
+    }
+    .skill-item {
+        padding : 2.5em;
+    }
+}
+@media ( max-width : 1040px) {
+    .leaflet {
+        height: 45vw;
+    }
+    .skill-list {
+        font-size: 0.7rem;
+    }
+    .skill-item {
+        padding : 2em;
+    }
+}
+@media ( max-width : 920px) {
+    .leaflet {
+        height: 45vw;
+    }
+    .skill-list {
+        font-size: 0.6rem;
+    }
+    .skill-item {
+        padding : 1.8em;
+    }
 }
