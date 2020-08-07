@@ -81,10 +81,20 @@
         distY = targetPos.y - pointerPos.y;
         pointerPos.x = pointerPos.x + distX*0.1;
         pointerPos.y = pointerPos.y + distY*0.1;
+        if (pointerPos.x > 1400) {
+            pointerPos.x = 1400;
+        }
+        if (pointerPos.x < 60) {
+            pointerPos.x = 60;
+        }
+        if (pointerPos.y > 370) {
+            pointerPos.y = 370;
+        }
         pointer.style.transform = `translate(${pointerPos.x-60}px, ${pointerPos.y+10}px)`
         requestAnimationFrame(render);
         //마우스와 이사벨라의 거리의 0.1를 곱한거리만큼 마우스쪽으로 가까워짐..반복적으로
     }
+    render();
 
     leaflet.addEventListener('click', e => {
         console.log(e.target); /* 최하위의 page-face를 선택됨 
@@ -120,10 +130,18 @@
         }
     });
 
+    //start-ani를 마치고 animationend 이벤트를 걸어 삭제한다.(zoom-in과 transform 충돌)
+    leaflet.addEventListener('animationend', ()=> {
+        leaflet.style.animation = `none`;
+    });
+
     window.addEventListener('mousemove', e => {
+        pointer.style.display = `inline-block`;
+        
         targetPos.x = e.clientX;
         targetPos.y = e.clientY;
+        console.log(e.clientX, e.clientY);
         //pointer.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        render();
+        
     });
 })(); 

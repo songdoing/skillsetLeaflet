@@ -1,3 +1,12 @@
+@keyframes start-ani {
+    0% {
+        transform :  translate(-100%, 100%) rotate(-540deg);
+    }
+    100% {
+        transform :  translate(0, 0) rotate(0);
+    }
+}
+
 html {
     font-size : 14px;
 }
@@ -10,8 +19,8 @@ body {
 .pointer {
     position: absolute;
     z-index : 10;
-    width : 400px;
     
+    display : none;
 }
 .pointer img {
     transition : 1s;
@@ -32,6 +41,7 @@ body {
     transform-style: preserve-3d; /*body에 설정한 perspective가 전달되도록*/
     transition: 1s;
     cursor : pointer;
+    animation : start-ani 1s forwards;
 }
 .page {
     position: absolute;
